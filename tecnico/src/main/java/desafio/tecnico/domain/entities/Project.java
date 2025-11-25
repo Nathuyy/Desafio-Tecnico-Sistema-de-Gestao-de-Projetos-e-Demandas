@@ -75,7 +75,7 @@ public class Project {
     }
 
     private void validateProjectName(String name){
-        if ( name.length() < 3) {
+        if (name == null || name.isBlank() || name.length() < 3) {
             throw new DomainException("Project name is invalid");   
         }
     }
@@ -84,40 +84,19 @@ public class Project {
         return id;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Date getStartDate() {
         return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
     }
 
     public Date getEndDate() {
         return endDate;
     }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-    
 }
