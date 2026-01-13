@@ -5,10 +5,10 @@ import java.util.UUID;
 import desafio.tecnico.application.gateways.task.GetByIdGateway;
 import desafio.tecnico.domain.entities.Task;
 
-public class GetByIdUseCasesImpl implements GetByIdGateway {
+public class GetByIdUseCase implements GetByIdGateway {
     private final GetByIdGateway getByIdGateway;
 
-    public GetByIdUseCasesImpl(GetByIdGateway getByIdGateway){
+    public GetByIdUseCase(GetByIdGateway getByIdGateway){
         this.getByIdGateway = getByIdGateway;
     }
 

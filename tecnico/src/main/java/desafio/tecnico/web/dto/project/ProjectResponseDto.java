@@ -1,4 +1,4 @@
-package desafio.tecnico.web.dto;
+package desafio.tecnico.web.dto.project;
 
 import java.util.Date;
 import java.util.UUID;

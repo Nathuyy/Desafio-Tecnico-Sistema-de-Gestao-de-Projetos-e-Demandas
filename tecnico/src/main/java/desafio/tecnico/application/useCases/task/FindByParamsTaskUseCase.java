@@ -5,10 +5,10 @@ import desafio.tecnico.domain.entities.Task;
 import desafio.tecnico.domain.enums.tasks.PriorityEnum;
 import desafio.tecnico.domain.enums.tasks.StatusEnum;
 
-public class FindByParamsTaskUseCaseImpl implements FindByParamsTaskGateway {
+public class FindByParamsTaskUseCase implements FindByParamsTaskGateway {
     private final FindByParamsTaskGateway findByParamsTaskGateway;
 
-    public FindByParamsTaskUseCaseImpl(FindByParamsTaskGateway findByParamsTaskGateway){
+    public FindByParamsTaskUseCase(FindByParamsTaskGateway findByParamsTaskGateway){
         this.findByParamsTaskGateway = findByParamsTaskGateway;
     }
 

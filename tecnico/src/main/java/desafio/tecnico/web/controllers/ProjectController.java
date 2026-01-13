@@ -11,13 +11,11 @@
     import org.springframework.web.bind.annotation.RequestMapping;
     import org.springframework.web.bind.annotation.RestController;
 
-    import desafio.tecnico.application.useCases.project.CreateProjectUseCase;
-    import desafio.tecnico.application.useCases.project.GetAllProjectsUseCase;
-    import desafio.tecnico.application.useCases.project.GetByIdUseCase;
+import desafio.tecnico.application.useCases.ProjectUseCases;
     import desafio.tecnico.domain.entities.Project;
-    import desafio.tecnico.web.dto.ProjectRequestDto;
-    import desafio.tecnico.web.dto.ProjectResponseDto;
-    import desafio.tecnico.web.mappers.ProjectMapper;
+import desafio.tecnico.web.dto.project.ProjectRequestDto;
+import desafio.tecnico.web.dto.project.ProjectResponseDto;
+import desafio.tecnico.web.mappers.ProjectMapper;
     import jakarta.validation.Valid;
 
     @RestController
@@ -25,32 +23,28 @@
     public class ProjectController {
 
         private final ProjectMapper mapper;
-        private final CreateProjectUseCase createUseCase;
-        private final GetAllProjectsUseCase gettAllUseCase;
-        private final GetByIdUseCase getByIdUseCase;
+        private final ProjectUseCases useCases;
 
-        public ProjectController(CreateProjectUseCase createUseCase, GetAllProjectsUseCase gettAllUseCase, GetByIdUseCase getByIdUseCase, ProjectMapper mapper){
-            this.createUseCase = createUseCase;
-            this.gettAllUseCase = gettAllUseCase;
-            this.getByIdUseCase = getByIdUseCase;
+        public ProjectController(ProjectMapper mapper, ProjectUseCases useCases){
             this.mapper = mapper;
+            this.useCases = useCases;
         }
 
         @PostMapping
         public ResponseEntity<ProjectResponseDto> create(@Valid @RequestBody ProjectRequestDto request){
-            Project project = createUseCase.execute(mapper.toDomain(request));
+            Project project = useCases.create().execute(mapper.toDomain(request));
             return ResponseEntity.ok(mapper.toResponse(project));
         }
 
         @GetMapping
         public ResponseEntity<List<ProjectResponseDto>> getAll() {
-            List<Project> projects = gettAllUseCase.execute();
+            List<Project> projects = useCases.getAll().execute();
             return ResponseEntity.ok(mapper.toResponseList(projects));
         }
 
         @GetMapping("/{id}")
         public ResponseEntity<ProjectResponseDto> getById(@PathVariable UUID id) {
-            Project project = getByIdUseCase.execute(id);
+            Project project = useCases.getById().execute(id);
             return ResponseEntity.ok(mapper.toResponse(project));
         }
     }

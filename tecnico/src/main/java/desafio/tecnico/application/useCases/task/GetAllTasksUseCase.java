@@ -5,10 +5,10 @@ import java.util.List;
 import desafio.tecnico.application.gateways.task.GetAllTasksGateway;
 import desafio.tecnico.domain.entities.Task;
 
-public class GetAllTasksUseCaseImpl implements GetAllTasksGateway {
+public class GetAllTasksUseCase implements GetAllTasksGateway {
     private final GetAllTasksGateway getAllProjectsGateway;
 
-    public GetAllTasksUseCaseImpl(GetAllTasksGateway getAllProjectsGateway){
+    public GetAllTasksUseCase(GetAllTasksGateway getAllProjectsGateway){
         this.getAllProjectsGateway = getAllProjectsGateway;
     }
 

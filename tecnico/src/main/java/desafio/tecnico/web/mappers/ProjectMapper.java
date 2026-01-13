@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 
 import desafio.tecnico.domain.entities.Project;
 import desafio.tecnico.infrastructure.persistence.entities.ProjectEntity;
-import desafio.tecnico.web.dto.ProjectRequestDto;
-import desafio.tecnico.web.dto.ProjectResponseDto;
+import desafio.tecnico.web.dto.project.ProjectRequestDto;
+import desafio.tecnico.web.dto.project.ProjectResponseDto;
 
 
 

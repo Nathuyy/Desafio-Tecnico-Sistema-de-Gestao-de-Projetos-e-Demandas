@@ -4,10 +4,10 @@ import java.util.UUID;
 
 import desafio.tecnico.application.gateways.task.DeleteTaskGateway;
 
-public class DeleteTaskUseCaseImpl implements DeleteTaskGateway {
+public class DeleteTaskUseCase implements DeleteTaskGateway {
     private final DeleteTaskGateway deleteTaskGateway;
 
-    public DeleteTaskUseCaseImpl(DeleteTaskGateway deleteTaskGateway){
+    public DeleteTaskUseCase(DeleteTaskGateway deleteTaskGateway){
         this.deleteTaskGateway = deleteTaskGateway;
     }
 
