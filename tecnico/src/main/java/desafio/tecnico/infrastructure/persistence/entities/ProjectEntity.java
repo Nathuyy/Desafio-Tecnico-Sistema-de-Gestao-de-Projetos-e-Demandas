@@ -1,6 +1,6 @@
 package desafio.tecnico.infrastructure.persistence.entities;
 
-import java.util.Date;
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -27,12 +27,12 @@ public class ProjectEntity {
     private String description;
     
     @Column(name = "start_date", nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date startDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    private OffsetDateTime startDate;
     
     @Column(name = "end_date")
-    @Temporal(TemporalType.DATE)
-    private Date endDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    private OffsetDateTime endDate;
     
     public ProjectEntity() {
     }
@@ -61,19 +61,19 @@ public class ProjectEntity {
         this.description = description;
     }
     
-    public Date getStartDate() {
+    public OffsetDateTime getStartDate() {
         return startDate;
     }
     
-    public void setStartDate(Date startDate) {
+    public void setStartDate(OffsetDateTime startDate) {
         this.startDate = startDate;
     }
     
-    public Date getEndDate() {
+    public OffsetDateTime getEndDate() {
         return endDate;
     }
     
-    public void setEndDate(Date endDate) {
+    public void setEndDate(OffsetDateTime endDate) {
         this.endDate = endDate;
     }
 }

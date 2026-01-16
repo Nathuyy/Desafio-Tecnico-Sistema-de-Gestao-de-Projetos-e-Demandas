@@ -1,19 +1,19 @@
 package desafio.tecnico.application.useCases.task;
 
-import desafio.tecnico.application.gateways.task.FindByParamsTaskGateway;
-import desafio.tecnico.domain.entities.Task;
-import desafio.tecnico.domain.enums.tasks.PriorityEnum;
-import desafio.tecnico.domain.enums.tasks.StatusEnum;
+import java.util.List;
 
-public class FindByParamsTaskUseCase implements FindByParamsTaskGateway {
+import desafio.tecnico.application.gateways.task.FindByParamsTaskGateway;
+import desafio.tecnico.domain.TaskParams;
+import desafio.tecnico.domain.entities.Task;
+
+public class FindByParamsTaskUseCase {
     private final FindByParamsTaskGateway findByParamsTaskGateway;
 
     public FindByParamsTaskUseCase(FindByParamsTaskGateway findByParamsTaskGateway){
         this.findByParamsTaskGateway = findByParamsTaskGateway;
     }
 
-    @Override
-    public Task execute(StatusEnum status, PriorityEnum priority) {
-        return findByParamsTaskGateway.execute(status, priority);
+    public List<Task> execute(TaskParams params) {
+        return findByParamsTaskGateway.execute(params);
     }  
 }

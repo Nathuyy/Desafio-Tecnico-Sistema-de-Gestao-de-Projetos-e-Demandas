@@ -1,10 +1,8 @@
 package desafio.tecnico.infrastructure.mapper;
 
-import org.springframework.stereotype.Component;
 import desafio.tecnico.domain.entities.Project;
 import desafio.tecnico.infrastructure.persistence.entities.ProjectEntity;
 
-@Component
 public class ProjectEntityMapper {
 
     public Project toDomain(ProjectEntity project) {

@@ -20,6 +20,7 @@ public class Task {
         this.validateTaskDueDate(build.dueDate);
         this.validateTaskProjectId(build.projectId);
         this.id = build.id;
+        this.title = build.title;
         this.status = build.status;
         this.priority = build.priority;
         this.dueDate = build.dueDate;

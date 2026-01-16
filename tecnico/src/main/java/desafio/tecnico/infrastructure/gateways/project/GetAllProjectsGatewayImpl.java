@@ -1,4 +1,4 @@
-package desafio.tecnico.infrastructure.gateways;
+package desafio.tecnico.infrastructure.gateways.project;
 
 import java.util.List;
 

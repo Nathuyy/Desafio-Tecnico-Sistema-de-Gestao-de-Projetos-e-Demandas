@@ -2,16 +2,11 @@ package desafio.tecnico.web.mappers;
 
 import java.util.List;
 
-import org.springframework.stereotype.Component;
-
 import desafio.tecnico.domain.entities.Project;
 import desafio.tecnico.infrastructure.persistence.entities.ProjectEntity;
 import desafio.tecnico.web.dto.project.ProjectRequestDto;
 import desafio.tecnico.web.dto.project.ProjectResponseDto;
 
-
-
-@Component
 public class ProjectMapper {
     public Project toDomain(ProjectEntity project){
         return new Project.Builder(project.getName(), project.getStartDate()).id(project.getId()).description(project.getDescription()).endDate(project.getEndDate()).build();

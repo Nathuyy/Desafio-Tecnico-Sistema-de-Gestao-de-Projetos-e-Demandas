@@ -1,6 +1,6 @@
 package desafio.tecnico.domain.entities;
 
-import java.util.Date;
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 import desafio.tecnico.domain.exception.DomainException;
@@ -9,8 +9,8 @@ public class Project {
     private UUID id;
     private String name;
     private String description;
-    private Date startDate;
-    private Date endDate;
+    private OffsetDateTime startDate;
+    private OffsetDateTime endDate;
 
     public Project(Builder build){
         this.validateProjectDates(build.startDate, build.endDate);
@@ -30,10 +30,10 @@ public class Project {
         private UUID id;
         private String name;
         private String description = null;
-        private Date startDate;
-        private Date endDate = null;
+        private OffsetDateTime startDate;
+        private OffsetDateTime endDate = null;
 
-        public Builder(String name, Date startDate){
+        public Builder(String name, OffsetDateTime startDate){
             this.name = name;
             this.startDate = startDate;
         }
@@ -48,7 +48,7 @@ public class Project {
             return this;
         }
 
-        public Builder endDate(Date endDate){
+        public Builder endDate(OffsetDateTime endDate){
             this.endDate = endDate;
             return this;
         }
@@ -59,7 +59,7 @@ public class Project {
         
     }
 
-    private void validateProjectDates(Date startDate, Date endDate){
+    private void validateProjectDates(OffsetDateTime startDate, OffsetDateTime endDate){
         if (startDate == null) {
             throw new DomainException("A start date is required");
         }
@@ -68,7 +68,7 @@ public class Project {
             return;
         }
 
-        if (startDate.after(endDate)) {
+        if (startDate.isAfter(endDate)) {
             throw new DomainException("The start date cannot be after the end date");
   
         }
@@ -92,11 +92,11 @@ public class Project {
         return description;
     }
 
-    public Date getStartDate() {
+    public OffsetDateTime getStartDate() {
         return startDate;
     }
 
-    public Date getEndDate() {
+    public OffsetDateTime getEndDate() {
         return endDate;
     }
 }
