@@ -9,6 +9,7 @@ import desafio.tecnico.domain.entities.Task;
 import desafio.tecnico.infrastructure.mapper.TaskEntityMapper;
 import desafio.tecnico.infrastructure.persistence.entities.TaskEntity;
 import desafio.tecnico.infrastructure.persistence.repositories.TaskRepository;
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class GetTaskByIdGatewayImpl implements GetByIdGateway {
@@ -22,7 +23,8 @@ public class GetTaskByIdGatewayImpl implements GetByIdGateway {
 
     @Override
     public Task execute(UUID id) {
-        TaskEntity taskEntity = repository.getById(id);
+        TaskEntity taskEntity = repository.findById(id)
+            .orElseThrow(() -> new EntityNotFoundException("Task not found with id: " + id));
         return mapper.toDomain(taskEntity);
     }
 

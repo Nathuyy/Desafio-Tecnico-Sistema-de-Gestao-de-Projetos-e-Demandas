@@ -9,6 +9,7 @@ import desafio.tecnico.domain.entities.Project;
 import desafio.tecnico.infrastructure.mapper.ProjectEntityMapper;
 import desafio.tecnico.infrastructure.persistence.entities.ProjectEntity;
 import desafio.tecnico.infrastructure.persistence.repositories.ProjectRepository;
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class GetByIdGatewayImpl implements GetByIdGateway {
@@ -22,7 +23,10 @@ public class GetByIdGatewayImpl implements GetByIdGateway {
 
     @Override
     public Project execute(UUID id) {
-        ProjectEntity entity = repository.getById(id);
+        ProjectEntity entity = repository.findById(id)
+            .orElseThrow(() -> new EntityNotFoundException(
+                "Project not found with id: " + id
+            ));
         return mapper.toDomain(entity);
     }
 
