@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Debug Auth Service (Docker)",
+      "request": "attach",
+      "hostName": "localhost",
+      "port": 5005
+    },
+    {
+      "type": "java",
+      "name": "Debug Tecnico Service (Docker)",
+      "request": "attach",
+      "hostName": "localhost",
+      "port": 5006
+    },
+    {
+      "type": "java",
+      "name": "Debug Gateway (Docker)",
+      "request": "attach",
+      "hostName": "localhost",
+      "port": 5007
+    }
+  ]
+}
