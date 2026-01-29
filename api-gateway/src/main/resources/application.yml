@@ -1,0 +1,47 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        # Auth - Rotas públicas
+        - id: auth-login
+          uri: http://auth-service:8080
+          predicates:
+            - Path=/auth/login
+            - Method=POST
+        
+        - id: auth-register
+          uri: http://auth-service:8080
+          predicates:
+            - Path=/auth/register
+            - Method=POST
+        
+        # Projects - Rotas protegidas
+        - id: tecnico-projects
+          uri: http://tecnico-service:8080
+          predicates:
+            - Path=/projects/**
+          filters:
+            - name: JwtAuthenticationFilter
+        
+        # Tasks - Rotas protegidas
+        - id: tecnico-tasks
+          uri: http://tecnico-service:8080
+          predicates:
+            - Path=/tasks/**
+          filters:
+            - name: JwtAuthenticationFilter
+
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+
+jwt:
+  secret: ${JWT_SECRET:secret}
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
