@@ -7,6 +7,7 @@ services:
       - "5005:5005"
     environment:
       JWT_SECRET: secret
+      JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
     depends_on:
       - auth-service
       - tecnico-service
@@ -16,13 +17,14 @@ services:
     container_name: auth-service
     ports:
       - "8081:8080"
-      - "5005:5005"
+      - "5006:5005"
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://auth-db:5432/authdb
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       JWT_SECRET: secret
+      JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
     depends_on:
       - auth-db
 
@@ -31,13 +33,14 @@ services:
     container_name: tecnico-service
     ports:
       - "8082:8080"
-      - "5005:5005"
+      - "5007:5005"
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://tecnico-db:5432/tecnicodb
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       JWT_SECRET: secret
+      JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
     depends_on:
       - tecnico-db
 
