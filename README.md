@@ -32,6 +32,7 @@ Backend
 - Spring Data JPA
 - Maven / Gradle
 - Swagger
+- Spring Cloud Gateway 
 
 Infraestrutura
 
