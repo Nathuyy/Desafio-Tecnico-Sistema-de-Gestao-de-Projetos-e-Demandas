@@ -1,4 +1,3 @@
-Desafio tech: https://github.com/matheuslf/dev.matheuslf.desafio.inscritos
 
 # Desafio Técnico – Sistema de Gestão de Projetos e Demandas
 
