@@ -12,6 +12,14 @@ services:
       - auth-service
       - tecnico-service
 
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - gateway
+
   auth-service:
     build: ./auth
     container_name: auth-service
