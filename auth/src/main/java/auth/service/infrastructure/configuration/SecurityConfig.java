@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfigurationSource;
 
 import jakarta.servlet.DispatcherType;
 
@@ -20,16 +21,18 @@ import jakarta.servlet.DispatcherType;
 public class SecurityConfig {
 
 	private final SecurityFilter securityFilter;
+	private final CorsConfigurationSource corsConfigurationSource;
 
-	public SecurityConfig(SecurityFilter securityFilter) {
+	public SecurityConfig(SecurityFilter securityFilter, CorsConfigurationSource corsConfigurationSource) {
 		this.securityFilter = securityFilter;
+		this.corsConfigurationSource = corsConfigurationSource;
 	}
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
 				.csrf(csrf -> csrf.disable())
-				.cors(cors -> cors.disable())
+				.cors(cors -> cors.configurationSource(corsConfigurationSource))
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authorizeHttpRequests(authorize -> authorize
 					.dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
@@ -37,9 +40,8 @@ public class SecurityConfig {
 					.requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
 					.anyRequest().authenticated())
 				.addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
-
 				.build();
-    }
+	}
 
 	@Bean
 	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {

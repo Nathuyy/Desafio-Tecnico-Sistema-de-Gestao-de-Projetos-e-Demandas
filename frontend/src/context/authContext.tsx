@@ -4,6 +4,7 @@ import { useAuthService } from "../services/authService";
 interface AuthContextProps {
     isAuthenticated: boolean;
     login: (email: string, password: string) => Promise<void>;
+   // register: (name: string, email: string, password: string) => Promise<void>;
     logout: () => void;
 }
 
@@ -16,6 +17,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     async function login(email: string, password: string) {
         const response = await authService.login({ email, password });
         localStorage.setItem("token", response.data.token);
+        setIsAuthenticated(true);
     }
 
     function logout() {
